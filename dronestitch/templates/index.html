@@ -5,14 +5,51 @@
 {% endblock %}
 
 {% block main %}
-    <div class="container">
-        <div class="card bg-dark text-white">
-            <img src="dronestitch/templates/images/Drone Flying Tips Header.jpg" class="card-img" alt="Flying Drone">
-            <div class="card-img-overlay">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-              <p class="card-text">Last updated 3 mins ago</p>
-            </div>
-          </div>
+    <div id="loading" hidden>
+        <image class="gif" src="static/images/Loading.gif" frameBorder="0" class="giphy-embed" style="width: 100%; ;"></image>
+        <h2 class="text-center">Stitching photos together, this may take some time.</h2>
     </div>
+    <div class="container-sm-6" id="content">
+        <!--Top with background image-->
+        <div class="bg-image p-5 text-center shadow-1-strong rounded mb-5 text-white" style="background-image: url(static/images/mavic-3-pro-lifestyle-5.jpg); background-size: cover;background-position: center, center;min-height: 100%;">
+                <h1>Get Stitching</h1>
+        </div>
+        <!--Explination of system-->
+        <div class="row">
+            <div class="col-sm text-center">
+                <h2>How it works</h2>
+                <p>After taking multiple top down photos from your drone, 
+                        input all of the files that you would like to be stiched into a larger 
+                        photo when promted. The photo stitching algorithm will then combine all of the 
+                        phtos together to make one large photo.
+                </p>
+                <p>If you would like to crop the photo so that there are no black on the borders 
+                        then tick the crop option below.
+                </p>
+            </div>
+        </div>
+        <!--Form for file upload-->
+        <div class="row">
+            <div class="col-sm">
+                <form method="post" enctype="multipart/form-data">
+                    <div class="mb-3">
+                        <label for="fileInput" class="form-label">Upload files</label>
+                        <input type="file" name="fileInput" multiple>
+                        <label for="crop" class="form-label">Crop</label>
+                        <input type="checkbox" name="crop">
+                        <button type="submit" onclick="loading()">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascript %}
+<script type="text/javascript">
+    function loading() {
+        document.getElementById('content').style.display = "none";
+        document.getElementById('loading').removeAttribute("hidden");
+    }
+</script>
 {% endblock %}
