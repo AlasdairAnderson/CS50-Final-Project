@@ -37,6 +37,10 @@ def index():
                 filename = secure_filename(file.filename)
                 print(filename)
                 file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+            else:
+                filetype = file.filename.rsplit('.', 1)[1].lower()
+                flash('Unaccepted file type '+ filetype +' uploaded. Approved file types are png, jpg and jpeg.')
+                return redirect(url_for('index'))
 
         crop = request.form.get("crop")
 

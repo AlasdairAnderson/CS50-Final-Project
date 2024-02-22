@@ -7,12 +7,14 @@ import imutils
 import cv2 as cv
 
 def image_stitch(crop, upload_folder, output_folder):
-    """ Stitch together images that is parsed from index"""
+    """ Stitch together images that is loaded into uplaod_folder"""
     print("[INFO] loading images...")
     images = []
     # Loop over the image paths, load each one, and add them to our images to stich list
     for file in os.listdir(upload_folder):
         file = upload_folder + "/" + file
+        if file=='NULL':
+            return False
         image = cv.imread(file)
         images.append(image)
 
